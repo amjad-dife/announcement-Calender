@@ -60,25 +60,4 @@ Here are some screenshots of the Calendar Application in action:
 ![Reminders](screenshots/reminders.png)
 *Reminders*
 
-## 🆘 Support
-
-If you encounter any issues or have any questions, please open an issue on our [GitHub Issues](https://github.com/yourusername/calendar-app/issues) page.
-
-## 🙏 Acknowledgements
-
-We would like to thank the following resources and libraries that made this project possible:
-
-- [React](https://reactjs.org/)
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-
-## 🔮 Future Plans
-
-We have exciting plans for future updates, including:
-
-- **Mobile App**: A mobile version of the Calendar Application.
-- **Integration with Other Calendars**: Sync with Google Calendar, Outlook, etc.
-- **Advanced Analytics**: Gain insights into your scheduling habits.
-
 Stay tuned for more updates!
