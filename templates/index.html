@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Announcements Calendar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        #calendar {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .fc-event {
+            background-color: #7aa4d2;
+            border: none;
+            color: #ffffff;
+        }
+        .fc-day-header {
+            background-color: #15365a;
+            color: #ffffff;
+        }
+        .fc-today {
+            background-color: #e9ecef !important;
+        }
+        .custom-btn {
+            display: block;
+            width: 20%;
+            margin: 10px ;
+            background-color: #15365a;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Announcements Calendar</h1>
+        <div id="calendar" class="table-responsive"></div>
+        <a href="/add_announcement" class="btn btn-primary mt-4 custom-btn">Add New Announcement</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                events: function(start, end, timezone, callback) {
+                    fetch('/api/announcements')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            const events = data.map(announcement => ({
+                                title: `${announcement.title} - ${announcement.professor_name}`,
+                                start: announcement.announcement_date
+                            }));
+                            callback(events);
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                            $('#calendar').html('<div class="alert alert-danger" role="alert">Failed to load announcements. Please try again later.</div>');
+                        });
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
