@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-success text-white text-center py-3">
+        <h1>Announcement Details</h1>
+    </header>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <article>
+                            <h2 id="announcement-title" class="card-title"><i class="fas fa-bullhorn"></i> Title: {{ announcement.title }}</h2>
+                            <p id="announcement-professor" class="card-text"><i class="fas fa-user"></i> Professor: {{ announcement.professor_name }}</p>
+                            <p id="announcement-description" class="card-text"><i class="fas fa-align-left"></i> Description: {{ announcement.description }}</p>
+                            <p id="announcement-date" class="card-text"><i class="fas fa-calendar-alt"></i> Date: {{ announcement.announcement_date }}</p>
+                            <p id="announcement-created-at" class="card-text"><i class="fas fa-clock"></i> Created At: {{ announcement.created_at }}</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

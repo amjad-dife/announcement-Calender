@@ -36,7 +36,7 @@ def get_announcements():
 
 @app.route('/')  # Route for the main page (calendar)
 def index():
-    return render_template('index.html')  # Render the index.html template 
+    return render_template('index2.html')  # Render the index.html template 
 
 
 @app.route('/add_announcement', methods=['GET', 'POST'])  # New route
@@ -57,6 +57,25 @@ def add_announcement():
             return f"Error inserting data: {str(e)}"  # Handle errors (improve this later)
 
     return render_template('add_announcement.html')  # Render the form page (GET request)
+
+@app.route("/announcement/<int:announcement_id>/", methods=['GET'])  # Route for getting a specific announcement
+def get_announcement(announcement_id):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM announcements WHERE id = ?", (announcement_id,))
+    announcement = cursor.fetchone()
+    if announcement is None:
+        return "Announcement not found", 404
+    announcement_dict = {
+        'id': announcement[0],
+        'professor_name': announcement[1],
+        'title': announcement[2],
+        'description': announcement[3],
+        'announcement_date': announcement[4],
+        'created_at': announcement[5]
+    }
+    return render_template('announcement_details.html', announcement=announcement_dict)
+
 
 if __name__ == '__main__':
     app.run(debug=True)  # Run the app in debug mode
